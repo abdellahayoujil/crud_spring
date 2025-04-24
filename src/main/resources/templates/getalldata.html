@@ -3,24 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>All Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .navigation {
+            margin-bottom: 30px;
+        }
+
+        .navigation a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #eaf3ff;
+        }
+
+        a[role="button"] {
+            background-color: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+
+        a[role="button"]:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-<p>
-    <a th:href="@{/}">Add new data</a><br><br>
+
+<div class="navigation">
+    <a th:href="@{/}">Add New Data</a>
     <a th:href="@{/getalldata}">All Submitted Data</a>
-</p>
+</div>
+
 <h2>All Submitted Data</h2>
-<table style="width:100%; border-collapse: collapse;" border="1">
+
+<table>
     <tr>
         <th>Name</th>
         <th>Title</th>
         <th>Number</th>
+        <th>Actions</th>
     </tr>
     <tr th:each="firstcrud : ${allCrud}">
         <td th:text="${firstcrud.name}"></td>
         <td th:text="${firstcrud.title}"></td>
         <td th:text="${firstcrud.number}"></td>
-        <td><a role="button" th:href="@{/(id = ${firstcrud.id})}">Update</a></td>
+        <td>
+            <a role="button" th:href="@{/(id=${firstcrud.id})}">Update</a>
+        </td>
     </tr>
 </table>
 

@@ -3,34 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>add new data</title>
+    <title>Add New Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .navigation {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .navigation a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        p[style*="color: red"] {
+            margin: 0 0 10px;
+            color: #e63946;
+            font-size: 0.9em;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<p>
-    <a th:href="@{/}">Add new data</a><br><br>
+
+<div class="navigation">
+    <a th:href="@{/}">Add New Data</a>
     <a th:href="@{/getalldata}">All Submitted Data</a>
-</p>
-<h1>Add new data</h1>
-<div class="center-screen">
+</div>
+
+<h1>Add New Data</h1>
+
+<div class="form-container">
     <form method="post" th:object="${addnewdata}" th:action="@{/dataSubmitFrom}">
 
-        <label for="name">Name</label><br>
-        <p th:errors="*{name}"></p><br>
-        <input type="text" id="name" name="name" th:field="*{name}"><br><br><br>
+        <label for="name">Name</label>
+        <p th:errors="*{name}"></p>
+        <input type="text" id="name" name="name" th:field="*{name}">
 
-        <label for="title">title</label><br>
-        <p th:errors="*{title}"></p><br>
-        <input type="text" id="title" name="title" th:field="*{title}"><br><br><br>
+        <label for="title">Title</label>
+        <p th:errors="*{title}"></p>
+        <input type="text" id="title" name="title" th:field="*{title}">
 
-        <label for="number">number</label><br>
-        <input type="number" id="number" name="number" th:field="*{number}"><br><br><br>
+        <label for="number">Number</label>
+        <input type="number" id="number" name="number" th:field="*{number}">
 
-        <input type="hidden"  th:field="*{id}"><br><br><br>
+        <input type="hidden" th:field="*{id}">
 
-        <button type="Add">Submit</button>
+        <button type="submit">Submit</button>
     </form>
 </div>
+
 </body>
 </html>

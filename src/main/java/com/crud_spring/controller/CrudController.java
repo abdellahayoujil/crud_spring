@@ -1,6 +1,9 @@
-package com.crud_spring;
+package com.crud_spring.controller;
 
 
+import com.crud_spring.Constant;
+import com.crud_spring.Crud;
+import com.crud_spring.repository.CrudRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,26 +13,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class CrudController {
 
-    List<Crud> allCrud = new ArrayList<>();
-
+    CrudRepository crudRepository = new CrudRepository();
 
     @GetMapping("/")
     public String addnewdata(Model model, @RequestParam(required = false) String id){
         Crud crud = new Crud();
         int index = getcrudIndex(id);
-        model.addAttribute("addnewdata", index == Constant.NO_Find ? crud : allCrud.get(index));
+        model.addAttribute("addnewdata", index == Constant.NO_Find ?
+                crud : crudRepository.getCrudByIdIndex(index));
         return "addnewdata";
     }
 
     public int getcrudIndex(String id) {
-        for (int i = 0; i < allCrud.size(); i++) {
-            if (allCrud.get(i).getId().equals(id) ) return i;
+        for (int i = 0; i < crudRepository.getalldata().size(); i++) {
+            if(crudRepository.getCrudByIdIndex(i).getId().equals(id) ) return i;
         }
         return Constant.NO_Find;
     }
@@ -41,9 +41,9 @@ public class CrudController {
 
         int index = getcrudIndex(crud.getId());
         if (index == Constant.NO_Find) {
-            allCrud.add(crud);
+            crudRepository.addData(crud);
         } else {
-            allCrud.set(index,crud);
+            crudRepository.updateData(crud,index);
         }
         return "redirect:/getalldata";
     }
@@ -51,7 +51,7 @@ public class CrudController {
 
     @GetMapping("/getalldata")
     public String getalldata(Model model){
-        model.addAttribute("allCrud", allCrud);
+        model.addAttribute("allCrud", crudRepository.getalldata());
         return "getalldata";
     }
         
