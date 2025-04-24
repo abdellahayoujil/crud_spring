@@ -1,11 +1,16 @@
 package com.crud_spring;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.UUID;
+
 
 public class Crud {
 
     private String id;
+    @NotBlank(message = "can not be empty")
     private String name;
+    @NotBlank(message = "can not be empty")
     private String title;
     private double number;
 

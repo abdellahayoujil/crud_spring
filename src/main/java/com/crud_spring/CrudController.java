@@ -1,9 +1,12 @@
 package com.crud_spring;
 
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,7 +23,7 @@ public class CrudController {
     public String addnewdata(Model model, @RequestParam(required = false) String id){
         Crud crud = new Crud();
         int index = getcrudIndex(id);
-        model.addAttribute("addnewdata", index == -1 ? crud : allCrud.get(index));
+        model.addAttribute("addnewdata", index == Constant.NO_Find ? crud : allCrud.get(index));
         return "addnewdata";
     }
 
@@ -28,15 +31,16 @@ public class CrudController {
         for (int i = 0; i < allCrud.size(); i++) {
             if (allCrud.get(i).getId().equals(id) ) return i;
         }
-        return -1;
+        return Constant.NO_Find;
     }
 
 
     @PostMapping("/dataSubmitFrom")
-    public String dataSubmitFrom(Crud crud){
+    public String dataSubmitFrom(@Valid @ModelAttribute("addnewdata") Crud crud, BindingResult result){
+        if(result.hasFieldErrors()) {return "addnewdata";}
 
         int index = getcrudIndex(crud.getId());
-        if (index == -1) {
+        if (index == Constant.NO_Find) {
             allCrud.add(crud);
         } else {
             allCrud.set(index,crud);

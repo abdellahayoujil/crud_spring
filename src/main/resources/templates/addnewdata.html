@@ -8,14 +8,20 @@
     <title>add new data</title>
 </head>
 <body>
+<p>
+    <a th:href="@{/}">Add new data</a><br><br>
+    <a th:href="@{/getalldata}">All Submitted Data</a>
+</p>
 <h1>Add new data</h1>
 <div class="center-screen">
     <form method="post" th:object="${addnewdata}" th:action="@{/dataSubmitFrom}">
 
         <label for="name">Name</label><br>
+        <p th:errors="*{name}"></p><br>
         <input type="text" id="name" name="name" th:field="*{name}"><br><br><br>
 
         <label for="title">title</label><br>
+        <p th:errors="*{title}"></p><br>
         <input type="text" id="title" name="title" th:field="*{title}"><br><br><br>
 
         <label for="number">number</label><br>
