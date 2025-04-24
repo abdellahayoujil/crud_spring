@@ -7,21 +7,21 @@ import java.util.List;
 
 public class CrudRepository {
 
-        private List<Crud> allCrud = new ArrayList<>();
+    public List<Crud> allCrud = new ArrayList<>();
 
-        public Crud getCrudByIdIndex(int index){
-            return  allCrud.get(index);
-        }
+    public Crud getCrudByIdIndex(int index) {
+        return allCrud.get(index);
+    }
 
-        public void addData(Crud crud){
-            allCrud.add(crud);
-        }
+    public void addData(Crud crud) {
+        allCrud.add(crud);
+    }
 
-        public void updateData(Crud crud,int index){
-            allCrud.set(index,crud);
-        }
+    public void updateData(Crud crud, int index) {
+        allCrud.set(index, crud);
+    }
 
-        public List<Crud> getalldata(){
-            return allCrud;
-        }
+    public List<Crud> getalldata() {
+        return allCrud;
+    }
 }

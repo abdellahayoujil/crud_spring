@@ -3,7 +3,7 @@ package com.crud_spring.controller;
 
 import com.crud_spring.Constant;
 import com.crud_spring.Crud;
-import com.crud_spring.repository.CrudRepository;
+import com.crud_spring.service.CrudService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,43 +16,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CrudController {
 
-    CrudRepository crudRepository = new CrudRepository();
+    //CrudRepository crudRepository = new CrudRepository();
+
+    CrudService crudService = new CrudService();
 
     @GetMapping("/")
-    public String addnewdata(Model model, @RequestParam(required = false) String id){
+    public String addnewdata(Model model, @RequestParam(required = false) String id) {
         Crud crud = new Crud();
-        int index = getcrudIndex(id);
-        model.addAttribute("addnewdata", index == Constant.NO_Find ?
-                crud : crudRepository.getCrudByIdIndex(index));
-        return "addnewdata";
-    }
 
-    public int getcrudIndex(String id) {
-        for (int i = 0; i < crudRepository.getalldata().size(); i++) {
-            if(crudRepository.getCrudByIdIndex(i).getId().equals(id) ) return i;
-        }
-        return Constant.NO_Find;
+        model.addAttribute("addnewdata", crudService.getCrudById(id));
+
+        return "addnewdata";
     }
 
 
     @PostMapping("/dataSubmitFrom")
-    public String dataSubmitFrom(@Valid @ModelAttribute("addnewdata") Crud crud, BindingResult result){
-        if(result.hasFieldErrors()) {return "addnewdata";}
-
-        int index = getcrudIndex(crud.getId());
-        if (index == Constant.NO_Find) {
-            crudRepository.addData(crud);
-        } else {
-            crudRepository.updateData(crud,index);
+    public String dataSubmitFrom(@Valid @ModelAttribute("addnewdata") Crud crud, BindingResult result) {
+        if (result.hasFieldErrors()) {
+            return "addnewdata";
         }
+
+        crudService.submitcrud(crud);
+        //int index = crudService.getcrudIndex(crud.getId());
+        //if (index == Constant.NO_Find) {
+        //  crudService.addData(crud);
+        //} else {
+        //  crudService.updateData(crud, index);
+        //}
         return "redirect:/getalldata";
     }
 
 
     @GetMapping("/getalldata")
-    public String getalldata(Model model){
-        model.addAttribute("allCrud", crudRepository.getalldata());
+    public String getalldata(Model model) {
+        model.addAttribute("allCrud", crudService.getalldata());
         return "getalldata";
     }
-        
+
 }
