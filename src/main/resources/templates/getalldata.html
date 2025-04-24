@@ -17,6 +17,7 @@
         <td th:text="${firstcrud.name}"></td>
         <td th:text="${firstcrud.title}"></td>
         <td th:text="${firstcrud.number}"></td>
+        <td><a role="button" th:href="@{/(id = ${firstcrud.id})}">Update</a></td>
     </tr>
 </table>
 

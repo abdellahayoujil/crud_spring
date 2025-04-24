@@ -8,6 +8,7 @@
     <title>add new data</title>
 </head>
 <body>
+<h1>Add new data</h1>
 <div class="center-screen">
     <form method="post" th:object="${addnewdata}" th:action="@{/dataSubmitFrom}">
 
@@ -19,6 +20,8 @@
 
         <label for="number">number</label><br>
         <input type="number" id="number" name="number" th:field="*{number}"><br><br><br>
+
+        <input type="hidden"  th:field="*{id}"><br><br><br>
 
         <button type="Add">Submit</button>
     </form>

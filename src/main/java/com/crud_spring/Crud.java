@@ -1,7 +1,10 @@
 package com.crud_spring;
 
+import java.util.UUID;
+
 public class Crud {
 
+    private String id;
     private String name;
     private String title;
     private double number;
@@ -15,6 +18,15 @@ public class Crud {
 
 
     public Crud() {
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
