@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All Data</title>
+</head>
+<body>
+
+<h2>All Submitted Data</h2>
+<table style="width:100%; border-collapse: collapse;" border="1">
+    <tr>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Number</th>
+    </tr>
+    <tr th:each="firstcrud : ${allCrud}">
+        <td th:text="${firstcrud.name}"></td>
+        <td th:text="${firstcrud.title}"></td>
+        <td th:text="${firstcrud.number}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
