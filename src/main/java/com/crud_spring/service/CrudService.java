@@ -3,12 +3,17 @@ package com.crud_spring.service;
 import com.crud_spring.Constant;
 import com.crud_spring.Crud;
 import com.crud_spring.repository.CrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CrudService {
 
-    CrudRepository crudRepository = new CrudRepository();
+    //CrudRepository crudRepository = new CrudRepository();
+    @Autowired
+    CrudRepository crudRepository;
 
     public Crud getCrudByIdIndex(int index) {
         return crudRepository.allCrud.get(index);

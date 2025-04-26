@@ -1,10 +1,11 @@
 package com.crud_spring.controller;
 
 
-import com.crud_spring.Constant;
+
 import com.crud_spring.Crud;
 import com.crud_spring.service.CrudService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,9 @@ public class CrudController {
 
     //CrudRepository crudRepository = new CrudRepository();
 
-    CrudService crudService = new CrudService();
+    //CrudService crudService = new CrudService();
+    @Autowired
+    CrudService crudService;
 
     @GetMapping("/")
     public String addnewdata(Model model, @RequestParam(required = false) String id) {

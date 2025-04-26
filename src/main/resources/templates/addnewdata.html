@@ -94,11 +94,11 @@
     <form method="post" th:object="${addnewdata}" th:action="@{/dataSubmitFrom}">
 
         <label for="name">Name</label>
-        <p th:errors="*{name}"></p>
+        <p  style="color:red" th:errors="*{name}"></p>
         <input type="text" id="name" name="name" th:field="*{name}">
 
         <label for="title">Title</label>
-        <p th:errors="*{title}"></p>
+        <p style="color:red" th:errors="*{title}"></p>
         <input type="text" id="title" name="title" th:field="*{title}">
 
         <label for="number">Number</label>
