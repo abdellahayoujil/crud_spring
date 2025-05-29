@@ -48,7 +48,7 @@ spring.application.name=crud_spring
 server.port=8081
 
 
-##💻 How to Run
+## 💻 How to Run
 1. Prerequisites
 Java 17+
 
@@ -62,7 +62,7 @@ mvn spring-boot:run
 Visit: http://localhost:8081
 
 
-##🔄 Available Routes
+## 🔄 Available Routes
 | Method | Endpoint          | Description                   |
 | ------ | ----------------- | ----------------------------- |
 | GET    | `/`               | Show form to add/update data  |
@@ -70,7 +70,7 @@ Visit: http://localhost:8081
 | GET    | `/getalldata`     | View all submitted records    |
 
 
-##📂 Data Model
+## 📂 Data Model
 Crud.java
 
 public class Crud {
@@ -99,7 +99,7 @@ Service Layer: Business logic is handled by CrudService.
 Repository: Stores records in memory (List<Crud>) without database usage.
 
 
-##🎨 UI Styling
+## 🎨 UI Styling
 
 Custom CSS styling for:
 
@@ -111,8 +111,13 @@ Navigation links
 
 Button hover effects
 
+Mobile-friendly layout
+
 
 ##🧑‍💻 Author
+
 Abdellah Ayoujil
+
 🔗 [GitHub Profile](https://github.com/abdellahayoujil)
-Mobile-friendly layout
+
+
