@@ -114,7 +114,7 @@ Button hover effects
 Mobile-friendly layout
 
 
-##🧑‍💻 Author
+## 🧑‍💻 Author
 
 Abdellah Ayoujil
 
