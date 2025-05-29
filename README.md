@@ -86,7 +86,7 @@ public class Crud {
 }
 
 
-##💡 Features Explained
+## 💡 Features Explained
 
 Validation: Uses @NotBlank to ensure form fields are not empty.
 
